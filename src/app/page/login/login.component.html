@@ -8,11 +8,12 @@
                     </h4>
                 </div>
                 <div class="card-body">
-                    <form [formGroup]="formData">
+                    <form [formGroup]="formData" (ngSubmit)="onLogin()">
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-input" placeholder="Your Email">
+                                    <input type="email" class="form-control form-input" placeholder="Your Email"
+                                        name="email" formControlName="email">
                                 </div>
                             </div>
                         </div>
@@ -20,7 +21,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-input" placeholder="Password">
+                                    <input type="password" class="form-control form-input" placeholder="Password"
+                                        name="passowrd" formControlName="password">
                                 </div>
                             </div>
                         </div>
@@ -28,7 +30,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group text-right">
-                                    <button class="btn btn-success">
+                                    <button class="btn btn-success" [disabled]="formData.invalid || processing"
+                                        type="submit">
                                         Log in
                                         <i class="las la-sign-in-alt"></i>
                                     </button>

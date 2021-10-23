@@ -12,4 +12,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  toggleSidebar() {
+    $('.static-sidebar').toggleClass('open');
+    $('.overlay').toggleClass('open');
+  }
+
 }

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +15,11 @@ import { SignupComponent } from './page/signup/signup.component';
 import { ContactComponent } from './page/contact/contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppInterceptorService } from './services/app-interceptor.service';
+import { ToastrModule } from 'ngx-toastr';
+import { SearchComponent } from './component/search/search.component';
+import { AvatarComponent } from './component/avatar/avatar.component';
 
 @NgModule({
   declarations: [
@@ -26,15 +32,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ViewerComponent,
     FooterComponent,
     SignupComponent,
-    ContactComponent
+    ContactComponent,
+    SearchComponent,
+    AvatarComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    })
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AppInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

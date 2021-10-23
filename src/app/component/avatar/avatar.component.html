@@ -1,0 +1,29 @@
+<a class="nav-link" placement="bottom-right" [ngbPopover]="popContent" popoverClass="bg-light">
+    <i class="las la-user-circle nav-icon"></i>
+</a>
+
+<ng-template #popContent>
+    <div class="d-flex">
+        <a class="mr-3">
+            <img alt="" class="avatar">
+        </a>
+
+        <span>
+            <p class="mb-0">John Doe</p>
+            <p class="small mb-0">
+                johndoe@gmail.com
+            </p>
+        </span>
+    </div>
+    <hr>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" (click)="onLogOut()">
+                <span class="mr-2">
+                    <i class="las la-power-off"></i>
+                </span>
+                Log Out
+            </a>
+        </li>
+    </ul>
+</ng-template>

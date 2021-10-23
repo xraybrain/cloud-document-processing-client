@@ -1,1 +1,32 @@
-<p>dashboard works!</p>
+<div class="wrapper">
+    <div class="static-sidebar">
+        <label class="static-sidebar-toggler" (click)="toggleSidebar()">
+            <i class="las la-stream"></i>
+        </label>
+
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="" class="nav-link">
+                    <i class="las la-folder"></i>
+                    All Files
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="" class="nav-link">
+                    <i class="las la-star"></i>
+                    Starred
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="" class="nav-link">
+                    <i class="las la-share"></i>
+                    Shared
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content">
+        main content here
+    </div>
+</div>
+<div class="overlay" (click)="toggleSidebar()"></div>
