@@ -5,6 +5,7 @@ export class CommentItem {
   public user: User;
   public document: DocumentResponse;
   public isEditMode: boolean;
+  public createdAt: string;
   constructor(
     public documentId: number,
     public userId: number,

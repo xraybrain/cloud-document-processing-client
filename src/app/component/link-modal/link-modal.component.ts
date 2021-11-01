@@ -31,8 +31,8 @@ export class LinkModalComponent implements OnInit {
     this.modal.close();
   }
 
-  onCopy() {
-    this.toaster.info("Copied");
+  onCopy(item: string) {
+    this.toaster.info("Copied!");
   }
 
   generateLink() {

@@ -12,9 +12,9 @@ import { UserService } from "src/app/services/user.service";
   styleUrls: ["./avatar.component.css"],
 })
 export class AvatarComponent implements OnInit {
-  private processing = false;
-  private user: User;
-  private baseUrl = AppGlobal.getBaseUrl();
+  public processing = false;
+  public user: User;
+  public baseUrl = AppGlobal.getBaseUrl();
 
   constructor(
     private authService: AuthService,

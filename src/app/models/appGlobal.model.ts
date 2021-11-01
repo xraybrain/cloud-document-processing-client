@@ -1,6 +1,8 @@
+import { isDevMode } from "@angular/core";
+
 export default class AppGlobal {
   static getBaseUrl(): string {
-    return "http://localhost:3000";
+    return isDevMode() ? "http://localhost:3000" : "";
   }
 
   static formatSize(size: number): string {

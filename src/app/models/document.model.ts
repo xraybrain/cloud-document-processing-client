@@ -18,6 +18,7 @@ export class DocumentVersionResponse {
   public hide = false;
   public link: string;
   public members: User[] = [];
+  public isOwner: boolean;
   constructor(
     public documentId: number,
     public userId: number,

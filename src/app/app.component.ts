@@ -16,6 +16,5 @@ export class AppComponent {
     private activatedRoute: ActivatedRoute
   ) {
     this.isLoggedIn = authService.isLoggedIn();
-    console.log(this.activatedRoute.snapshot.params);
   }
 }
