@@ -1,0 +1,25 @@
+<div class="modal-header justify-content-center border-bottom-0">
+    <h5 class="modal-title">
+        Confirm
+    </h5>
+</div>
+
+<div class="modal-body">
+    <div class="py-3 text-center">
+        <p>
+            <i class="las la-trash-alt la-2x"></i>
+        </p>
+        <p>
+            Are you sure you want to delete <b class="text-danger">{{doc.name}}</b>?
+        </p>
+    </div>
+</div>
+
+<div class="modal-footer border-top-0">
+    <button class="btn btn-light" (click)="close()">
+        Cancel
+    </button>
+    <button class="btn btn-danger" (click)="onDelete()">
+        Delete
+    </button>
+</div>

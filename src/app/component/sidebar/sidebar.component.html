@@ -1,1 +1,29 @@
-<p>sidebar works!</p>
+<label class="static-sidebar-toggler" (click)="toggleSidebar()">
+    <i class="las la-stream"></i>
+</label>
+
+<h5 class="my-3 text-muted px-2">My Files</h5>
+
+<ul class="nav flex-column">
+    <li class="nav-item mb-2">
+        <a (click)="onSelect(view.home)" routerLink="/dashboard/home" class="nav-link d-flex align-items-center active"
+            [ngClass]="{'active': activeLink === view.home}">
+            <i class="las la-cloud nav-icon mr-2"></i>
+            <span>Cloud drive</span>
+        </a>
+    </li>
+    <li class="nav-item my-2">
+        <a (click)="onSelect(view.star)" routerLink="/dashboard/star" [ngClass]="{'active': activeLink === view.star}"
+            class="nav-link">
+            <i class="las la-star nav-icon mr-2"></i>
+            <span>Starred</span>
+        </a>
+    </li>
+    <li class="nav-item my-2">
+        <a (click)="onSelect(view.share)" routerLink="/dashboard/share"
+            [ngClass]="{'active': activeLink === view.share}" class="nav-link">
+            <i class="las la-share nav-icon mr-2"></i>
+            <span>Shared</span>
+        </a>
+    </li>
+</ul>

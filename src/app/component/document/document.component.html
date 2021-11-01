@@ -1,0 +1,109 @@
+<div class="card document-card" [ngClass]="{'selected': selected}">
+    <div class="card-header bg-white text-right">
+        <span *ngIf="data.isStarred" class="static-align-top-right">
+            <i class="las la-star text-danger mr-1"></i>
+        </span>
+    </div>
+    <div class="card-body pt-0" (click)="toggleSelect()">
+        <span class="d-block icon-big text-center">
+            <ng-container *ngIf="data.document.isFolder">
+                <i class="las la-folder icon-big"></i>
+            </ng-container>
+
+            <ng-container *ngIf="!data.document.isFolder && !isImage()">
+                <i class="{{docIconMap.getIcon(data.document.extension)}}"></i>
+            </ng-container>
+
+            <ng-container *ngIf="!data.document.isFolder && isImage()">
+                <img [src]="baseUrl + data.document.url" alt="document" class="document-img">
+            </ng-container>
+        </span>
+    </div>
+    <div class="card-footer bg-white border-top-0">
+        <p class="text-center mb-0 pb-0 text-overflow-ellipsis" placement="bottom" ngbTooltip="{{data.name}}">
+            {{data.name}}
+        </p>
+        <span class="static-align-bottom-right">
+            <label class="static-more-btn" placement="bottom-right" [ngbPopover]="popContent"
+                popoverClass="bg-light static-popover-width">
+                <i class="las la-ellipsis-h"></i>
+            </label>
+        </span>
+    </div>
+</div>
+
+<ng-template #popContent>
+    <ul class="nav menu-nav w-100 flex-column">
+        <li class="nav-item" *ngIf="data.document.isFolder">
+            <a class="nav-link" (click)="onOpenFolder()">
+                <i class="las la-folder-open"></i>&nbsp;Open
+            </a>
+        </li>
+        <li class="nav-item" *ngIf="!data.document.isFolder">
+            <a class="nav-link" [routerLink]="'/preview/' + data.id">
+                <i class="las la-search"></i>&nbsp;Preview
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="onComments()">
+                <i class="las la-comment"></i>&nbsp;Comment
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="onShare()" *ngIf="data.document.isFolder">
+                <i class="las la-share"></i>&nbsp;Share
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="onMembers()" *ngIf="data.document.isFolder">
+                <i class="las la-folder-open"></i>&nbsp;Members
+            </a>
+        </li>
+        <li class="nav-item">
+            <a (click)="onCopy()" class="nav-link">
+                <i class="las la-copy"></i>&nbsp;Copy
+            </a>
+        </li>
+        <li class="nav-item">
+            <a (click)="onMove()" class="nav-link">
+                <i class="las la-arrows-alt"></i>&nbsp;Move
+            </a>
+        </li>
+        <li class="nav-item" *ngIf="!data.document.isFolder" (click)="onGetLink()">
+            <a class="nav-link">
+                <i class="las la-link"></i>&nbsp;Get Link
+            </a>
+        </li>
+        <li class="nav-item" *ngIf="!data.document.isFolder">
+            <a [href]="baseUrl + data.document.url" target="_blank" class="nav-link">
+                <i class="las la-download"></i>&nbsp;Download
+            </a>
+        </li>
+        <li class="nav-item">
+            <a (click)="onStar()" class="nav-link">
+                <ng-container *ngIf="!data.isStarred">
+                    <i class="las la-star"></i>&nbsp;Star
+                </ng-container>
+                <ng-container *ngIf="data.isStarred">
+                    <i class="las la-minus-circle"></i>
+                    &nbsp;Remove Star
+                </ng-container>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a (click)="onRename()" class="nav-link">
+                <i class="las la-pen"></i>&nbsp;Rename
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="onActivities()">
+                <i class="las la-list"></i>&nbsp;Activities
+            </a>
+        </li>
+        <li class="nav-item">
+            <a (click)="onDelete()" class="nav-link">
+                <i class="las la-trash-alt"></i>&nbsp;Delete
+            </a>
+        </li>
+    </ul>
+</ng-template>

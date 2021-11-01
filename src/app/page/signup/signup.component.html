@@ -14,7 +14,7 @@
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-control form-input">
                                         <input type="text" placeholder="First name" name="firstname"
-                                            formControlName="firstname">
+                                            formControlName="firstname" autocomplete="off">
 
                                         <a class="ml-3 py-2 pl-2" *ngIf="f.firstname.errors &&f.firstname.touched"
                                             placement="left" ngbTooltip="Please provide firstname">
@@ -30,7 +30,7 @@
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-control form-input">
                                         <input type="text" placeholder="Last name" name="lastname"
-                                            formControlName="lastname">
+                                            formControlName="lastname" autocomplete="off">
 
                                         <a class="ml-3 py-2 pl-2" *ngIf="f.lastname.errors && f.lastname.touched"
                                             placement="left" ngbTooltip="Please provide lastname">
@@ -48,7 +48,8 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-control form-input">
-                                        <input type="email" placeholder="Email" name="email" formControlName="email">
+                                        <input type="email" placeholder="Email" name="email" formControlName="email"
+                                            autocomplete="off">
 
                                         <a class="ml-3 py-2 pl-2" *ngIf="f.email.errors && f.email.touched"
                                             placement="left" ngbTooltip="Please provide a valid email">
@@ -67,7 +68,7 @@
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-control form-input">
                                         <input type="password" placeholder="Password" name="password"
-                                            formControlName="password">
+                                            formControlName="password" autocomplete="off">
 
                                         <a class="ml-3 py-2 pl-2" *ngIf="f.password.errors && f.password.touched"
                                             placement="left" ngbTooltip="Please provide a password">
@@ -86,7 +87,7 @@
                                 <div class="form-group">
                                     <div class="d-flex align-items-center form-control form-input">
                                         <input type="password" placeholder="Retype Password" name="confirmPassword"
-                                            formControlName="confirmPassword">
+                                            formControlName="confirmPassword" autocomplete="off">
 
                                         <span *ngIf="f.confirmPassword.errors">
                                             <a class="ml-3 py-2 pl-2"

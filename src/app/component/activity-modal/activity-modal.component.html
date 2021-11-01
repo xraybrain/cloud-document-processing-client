@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h5 class="modal-title">
+        Activities
+    </h5>
+    <a (click)="close()" class="close">
+        <i class="las la-times"></i>
+    </a>
+</div>
+
+<div class="modal-body">
+    <p class="text-center text-muted" *ngIf="activities.length == 0">
+        <i class="las la-list-alt la-3x"></i>
+    </p>
+    <ul class="static-comment-section">
+        <ng-container *ngFor="let activity of activities">
+            <li>
+                <div class="card shadow document-card mb-2">
+                    <div class="card-body p-2">
+                        <p>{{activity.user.firstname}} {{activity.user.lastname}}</p>
+                        <p class="mb-0">{{activity.content}}</p>
+                        <p class="mt-1 mb-0">
+                            <i class="las la-clock mr-1"></i>
+                            {{activity.createdAt | amDateFormat:'LL'}}
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ng-container>
+    </ul>
+</div>

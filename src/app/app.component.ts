@@ -1,16 +1,21 @@
-import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { AuthService } from "./services/auth.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  title = 'Cloudify';
+  title = "Cloudify";
   isLoggedIn: boolean;
 
-  constructor(authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+    private activatedRoute: ActivatedRoute
+  ) {
     this.isLoggedIn = authService.isLoggedIn();
+    console.log(this.activatedRoute.snapshot.params);
   }
 }

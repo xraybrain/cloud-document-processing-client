@@ -1,0 +1,29 @@
+<div class="modal-header border-bottom-0">
+    <h5 class="modal-title">
+        Get Link
+    </h5>
+    <a (click)="close()" class="close">
+        <i class="las la-times"></i>
+    </a>
+</div>
+<div class="modal-body">
+    <div class="card document-card">
+        <div class="card-body">
+            <p class="text-muted">
+                {{doc.name}} {{appGlobal.formatSize(doc.size)}}
+            </p>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" readonly [value]="doc.link">
+                    <span class="input-group-append">
+                        <button class="input-group-text btn btn-info" appCopyClipboard [payload]="doc.link"
+                            (copied)="onCopy($event)">
+                            <i class="las la-copy"></i>
+                            Copy
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

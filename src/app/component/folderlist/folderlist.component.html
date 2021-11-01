@@ -1,0 +1,24 @@
+<ul class="dir-list">
+    <ng-container *ngFor="let folder of folders">
+        <ng-container [ngTemplateOutlet]="folderNode" [ngTemplateOutletContext]="{$implicit:folder}">
+        </ng-container>
+    </ng-container>
+</ul>
+
+<ng-template #folderNode let-folder>
+    <li class="folder">
+        <a (click)="onSelectFolder(folder)">
+            <span>
+                {{folder.name}}
+            </span>
+        </a>
+        <ng-container *ngIf="folder.folders && !folder.hide">
+            <ng-container *ngFor="let subFolder of folder.folders">
+                <ul>
+                    <ng-container [ngTemplateOutlet]="folderNode" [ngTemplateOutletContext]="{$implicit:subFolder}">
+                    </ng-container>
+                </ul>
+            </ng-container>
+        </ng-container>
+    </li>
+</ng-template>

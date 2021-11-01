@@ -1,0 +1,36 @@
+<div class="modal-header justify-content-center">
+    <h5 class="modal-title">
+        Comments
+    </h5>
+    <a (click)="close()" class="close">
+        <i class="las la-times"></i>
+    </a>
+</div>
+<div class="modal-body">
+    <div class="text-center text-muted" *ngIf="comments.length == 0">
+        <span class="d-inline-block">
+            <i class="las la-comment la-3x"></i>
+        </span>
+        <h5>
+            Comments.
+        </h5>
+    </div>
+    <ul class="static-comment-section">
+        <li *ngFor="let comment of comments" class="mb-2">
+            <app-comment [data]="comment" (delete)="onDelete($event)"></app-comment>
+        </li>
+    </ul>
+    <button class="btn btn-light" (click)="loadMore()" *ngIf="hasMore">
+        Load More
+    </button>
+</div>
+<div class="modal-footer">
+    <form class="d-flex w-100" [formGroup]="formData" (ngSubmit)="comment()">
+        <div class="form-control static-form-control">
+            <input type="text" placeholder="Comment" formControlName="content" name="content" autocomplete="off">
+            <button class="btn p-1" type="submit">
+                <i class="las la-paper-plane text-success fa-2x"></i>
+            </button>
+        </div>
+    </form>
+</div>

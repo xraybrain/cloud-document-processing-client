@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="py-3">
+        <div class="row">
+            <ng-container *ngFor="let document of documents">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-3 mb-2 px-1 px-lg-2">
+                    <app-document [data]="document" (openFolder)="onOpenFolder($event)" (copyDocument)="onCopy($event)"
+                        (moveDocument)="onMove($event)" (starDocument)="onStar($event)"
+                        (renameDocument)="onRename($event)" (deleteDocument)="onDelete($event)"
+                        (shareDocument)="onShare($event)" (comments)="onComments($event)"
+                        (activities)="onActivities($event)" (members)="onMembers($event)" (link)="onGetLink($event)">
+                    </app-document>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+<div class="static-align-middle text-muted text-center" *ngIf="!documents || documents.length == 0">
+    <p><i class="las la-folder la-4x"></i></p>
+    <h5>
+        Folder.
+    </h5>
+</div>

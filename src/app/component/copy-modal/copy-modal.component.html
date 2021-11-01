@@ -1,0 +1,86 @@
+<div class="modal-header justify-content-center">
+    <h5 class="text-center">
+        Copy
+    </h5>
+</div>
+<div class="modal-body">
+    <div class="col-12 col-lg-10 mx-auto px-1">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-4 col-lg-3">
+                    <label for="selected-items">
+                        Selected Items:
+                    </label>
+                </div>
+                <div class="col-8 col-lg-9">
+                    <div class="card">
+                        <div class="card- p-1">
+                            <ul class="nav flex-column menu-nav">
+                                <li class="nav-item" *ngFor="let item of selectedItems">
+                                    <a class="nav-link">
+                                        <span class="mr-2">
+                                            <i class="fas fa-folder text-primary" *ngIf="item.document.isFolder"></i>
+                                            <i class="{{docMap.getIcon(item.document.extension)}}"
+                                                *ngIf="!item.document.isFolder"></i>
+                                        </span>
+                                        {{item.name}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-4 col-lg-3">
+                    <label for="selected-items">
+                        Target:
+                    </label>
+                </div>
+                <div class="col-8 col-lg-9">
+                    <div class="card">
+                        <div class="card-body p-1">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb mb-0 bg-white p-2">
+                                    <li class="breadcrumb-item" *ngFor="let target of targetList">
+                                        <a>{{target.name}}</a>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-3">
+        <h6>My folders</h6>
+
+        <div>
+            <app-folderlist [currentFolder]="currentFolder" (selectFolder)="onChangeTarget($event)"
+                [selectedItems]="selectedItems"></app-folderlist>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer justify-content-end">
+    <!-- <span>
+        <button class="btn btn-light">
+            New Folder
+        </button>
+    </span> -->
+
+    <span>
+        <button class="btn btn-light mr-1" (click)="close()">
+            Cancel
+        </button>
+
+        <button class="btn btn-success" (click)="copyDocuments()">
+            Paste
+        </button>
+    </span>
+</div>

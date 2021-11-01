@@ -1,32 +1,22 @@
 <div class="wrapper">
-    <div class="static-sidebar">
-        <label class="static-sidebar-toggler" (click)="toggleSidebar()">
-            <i class="las la-stream"></i>
-        </label>
-
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a href="" class="nav-link">
-                    <i class="las la-folder"></i>
-                    All Files
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="" class="nav-link">
-                    <i class="las la-star"></i>
-                    Starred
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="" class="nav-link">
-                    <i class="las la-share"></i>
-                    Shared
-                </a>
-            </li>
-        </ul>
-    </div>
+    <app-sidebar class="static-sidebar sticky-top" [activeLink]="currentView" (selected)="onNavSelected($event)">
+    </app-sidebar>
+    <div class="overlay"></div>
     <div class="main-content">
-        main content here
+        <app-main-header [currentFolder]="currentFolder" (folderCreated)="onFolderCreated($event)"
+            [openFolders]="openFolders" (gotoFolder)="onGotoFolder($event)" (uploaded)="onUpload($event)"
+            [isHome]="isHome">
+        </app-main-header>
+        <app-documentlist [documents]="documents" (openFolder)="onOpenFolder($event)" (copyDocument)="onCopy($event)"
+            (moveDocument)="onMove($event)" (starDocument)="onStar($event)" (renameDocument)="onRename($event)"
+            (deleteDocument)="onDelete($event)" (shareDocument)="onShare($event)" (comments)="onComments($event)"
+            (activities)="onActivities($event)" (members)="onMembers($event)" (link)="onGetLink($event)">
+        </app-documentlist>
+
+        <div class="py-3">
+            <button class="btn btn-light" *ngIf="hasMore" (click)="loadMore()">
+                Load More
+            </button>
+        </div>
     </div>
 </div>
-<div class="overlay" (click)="toggleSidebar()"></div>

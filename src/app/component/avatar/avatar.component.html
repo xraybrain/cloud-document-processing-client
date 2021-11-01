@@ -4,25 +4,27 @@
 
 <ng-template #popContent>
     <div class="d-flex">
-        <a class="mr-3">
-            <img alt="" class="avatar">
+        <a routerLink="/profile" class="mr-3">
+            <img [src]="baseUrl + user.image" alt="{{user.firstname}} image" class="avatar">
         </a>
 
         <span>
-            <p class="mb-0">John Doe</p>
+            <p class="mb-0">{{user.firstname}} {{user.lastname}}</p>
             <p class="small mb-0">
-                johndoe@gmail.com
+                {{user.email}}
             </p>
         </span>
     </div>
     <hr>
-    <ul class="nav">
+    <ul class="nav menu-nav px-0">
         <li class="nav-item">
-            <a class="nav-link" (click)="onLogOut()">
+            <a class="nav-link d-flex align-items-center px-0" (click)="onLogOut()">
                 <span class="mr-2">
-                    <i class="las la-power-off"></i>
+                    <i class="las la-power-off la-2x"></i>
                 </span>
-                Log Out
+                <span>
+                    Log Out
+                </span>
             </a>
         </li>
     </ul>

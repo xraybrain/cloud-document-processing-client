@@ -76,13 +76,33 @@
 
 .nav-icon {
   font-size: 1.5rem;
+  vertical-align: middle;
 }
 
-.avatar {
+.avatar,
+.avatar-sm {
   width: 3em;
   height: 3em;
   border-radius: 50%;
   border: 2px solid #fff;
+}
+
+.avatar-sm {
+  width: 2em;
+  height: 2em;
+}
+
+.static-comment-section {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.static-comment-section > li {
+  padding-left: 1.5rem;
+  margin-left: 0.8rem;
+  border-left: 0.1rem solid #eee;
+  position: relative;
 }
 
 /* Content Wrapper */
@@ -93,13 +113,34 @@
 }
 
 .static-sidebar {
+  width: 15em;
   background-color: #fff;
-  width: 20%;
   transition: all 0.8s ease-in-out;
+  min-height: 100%;
+}
+
+.static-sidebar li {
+  margin: 0rem 0.33rem;
+}
+
+.static-sidebar a {
+  color: #333;
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+}
+
+.static-sidebar a.active {
+  background-color: #dc3545;
+  color: #fff;
+  border-radius: 2rem;
 }
 
 .main-content {
   width: 100%;
+  min-height: 75vh;
+  padding: 0.3rem;
+  position: relative;
 }
 
 .static-sidebar-toggler {
@@ -121,6 +162,262 @@
 }
 
 /* Content Wrapper */
+
+.icon-big {
+  font-size: 3rem;
+}
+
+.document-card,
+.static-rounded {
+  border-radius: 10px;
+}
+
+.document-card {
+  cursor: pointer;
+}
+
+.document-card.selected {
+  box-shadow: 0px 0px 5px #f57803;
+}
+
+.document-card .card-header,
+.document-card .card-footer,
+.static-rounded .card-header,
+.static-rounded .card-footer {
+  border-radius: 10px !important;
+  border: none;
+}
+
+.document-img {
+  width: 4rem;
+  height: 3rem;
+  display: inline-block;
+  text-align: center;
+}
+
+.static-align-bottom-right {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.static-align-top-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.static-progress {
+  position: fixed;
+  width: 45%;
+  left: 50%;
+  bottom: 5%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background-color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+}
+
+.static-form-control {
+  border-radius: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.static-form-control input,
+.static-form-control textarea {
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.static-form-control input:focus,
+.static-form-control textarea:focus {
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.comment-btn {
+  background-color: #eee;
+  border-radius: 50% !important;
+  height: 2rem;
+  width: 2rem;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.static-align-middle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.static-more-btn {
+  font-weight: 700;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: #e7e7e7da;
+  border-radius: 50%;
+  height: 1.5em;
+  width: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.33rem;
+}
+
+.text-overflow-ellipsis {
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+  white-space: nowrap;
+}
+
+.static-popover-width {
+  min-width: 9rem;
+}
+
+.static-popover-width .popover-body {
+  padding: 0.3rem;
+}
+
+.static-breadcrumb a {
+  color: #333;
+  cursor: pointer;
+}
+
+.static-breadcrumb a:hover {
+  text-decoration: none;
+}
+
+ngb-popover-window.bs-popover-bottom-right > .arrow {
+  right: 0em !important;
+}
+
+.menu-nav a {
+  color: #333;
+  cursor: pointer;
+}
+
+/* Dir */
+.dir-list ul {
+  margin-left: 10px;
+  padding-left: 20px;
+  border-left: 1px solid #ddd;
+}
+
+.dir-list li {
+  list-style: none;
+  color: #888;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.dir-list a {
+  color: #888;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.dir-list a:hover {
+  color: #000;
+}
+
+.dir-list .folder,
+.dir-list .folder > a {
+  color: #777;
+  font-weight: 400;
+}
+
+/* Dir Icons */
+.dir-list li:before {
+  margin-right: 10px;
+  content: "";
+  height: 20px;
+  vertical-align: middle;
+  width: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  /* file icon by default */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='lightgrey' d='M85.714,42.857V87.5c0,1.487-0.521,2.752-1.562,3.794c-1.042,1.041-2.308,1.562-3.795,1.562H19.643 c-1.488,0-2.753-0.521-3.794-1.562c-1.042-1.042-1.562-2.307-1.562-3.794v-75c0-1.487,0.521-2.752,1.562-3.794 c1.041-1.041,2.306-1.562,3.794-1.562H50V37.5c0,1.488,0.521,2.753,1.562,3.795s2.307,1.562,3.795,1.562H85.714z M85.546,35.714 H57.143V7.311c3.05,0.558,5.505,1.767,7.366,3.627l17.41,17.411C83.78,30.209,84.989,32.665,85.546,35.714z' /></svg>");
+  background-position: center 2px;
+  background-size: 60% auto;
+}
+
+.dir-list li.folder:before {
+  /* folder icon if folder class is specified */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='lightblue' d='M96.429,37.5v39.286c0,3.423-1.228,6.361-3.684,8.817c-2.455,2.455-5.395,3.683-8.816,3.683H16.071 c-3.423,0-6.362-1.228-8.817-3.683c-2.456-2.456-3.683-5.395-3.683-8.817V23.214c0-3.422,1.228-6.362,3.683-8.817 c2.455-2.456,5.394-3.683,8.817-3.683h17.857c3.422,0,6.362,1.228,8.817,3.683c2.455,2.455,3.683,5.395,3.683,8.817V25h37.5 c3.422,0,6.361,1.228,8.816,3.683C95.201,31.138,96.429,34.078,96.429,37.5z' /></svg>");
+  background-position: center top;
+  background-size: 75% auto;
+}
+/* Dir Icons */
+
+.modal-content {
+  border-radius: 0.8rem !important;
+}
+
+.static-square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  border: 0.1rem solid #333;
+  border-radius: 0.3rem;
+  text-transform: uppercase;
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.static-scrollable-list {
+  height: 10rem;
+  max-height: 10rem;
+  width: 100%;
+  position: absolute;
+  background-color: #fff;
+  overflow-y: auto;
+  bottom: 50px;
+}
+
+.static-align-top-right {
+  position: absolute;
+  top: 0;
+  right: 0%;
+}
+
+.btn-circle {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-circle:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.icon-md {
+  font-size: 2.2rem;
+}
 
 @media screen and (max-width: 787px) {
   .static-sidebar-toggler {
@@ -169,5 +466,9 @@
 
   .static-sidebar {
     width: 80%;
+  }
+
+  .static-progress {
+    width: 100%;
   }
 }

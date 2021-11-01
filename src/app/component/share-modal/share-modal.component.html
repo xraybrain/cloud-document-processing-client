@@ -1,0 +1,71 @@
+<div class="modal-header">
+    <h5 class="modal-title">
+        Share
+    </h5>
+    <a class="close" (click)="close()">
+        <i class="las la-times"></i>
+    </a>
+</div>
+<div class="modal-body">
+    <div>
+        <h6 class="mb-2">
+            Who has access:
+        </h6>
+        <ng-container *ngFor="let member of doc.members">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="d-flex align-items-center">
+                    <span class="static-square mr-2">
+                        {{getFirstLetter(member.firstname)}}
+                    </span>
+                    <span class="text-capitalize">
+                        {{member.firstname}} {{member.lastname}}
+                    </span>
+                </span>
+                <button class="btn" *ngIf="!member.isOwner && doc.isOwner" (click)="removeMember(member)">
+                    <i class="las la-times-circle text-dark"></i>
+                </button>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<div class="modal-footer d-block text-center" *ngIf="doc.isOwner">
+    <div class="form-group" style="position: relative;" *ngIf="isAddMember">
+        <div class="static-scrollable-list">
+            <div style="position: relative;" class="mb-5">
+                <a class="static-align-top-right btn-circle" (click)="toggleAddMember()">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+            <div class="text-center py-3" *ngIf="isLoading">
+                <i class="las la-spinner la-spin icon-md"></i>
+            </div>
+
+            <ng-container *ngFor="let user of users">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="d-flex align-items-center">
+                        <img [src]="baseUrl + user.image" [alt]="user.firstname + ' image'" class="avatar-sm mr-2">
+                        <h6 class="text-capitalize">
+                            {{user.firstname}} {{user.lastname}}
+                        </h6>
+                    </span>
+                    <button class="btn-success btn-sm" (click)="addMember(user)">
+                        Add
+                    </button>
+                </div>
+            </ng-container>
+        </div>
+        <input type="text" class="form-control" placeholder="Firstname, Lastname or Email"
+            (keyup)="onTextChange(search.value)" #search />
+    </div>
+    <ng-container *ngIf="!isAddMember">
+        <button class="btn" (click)="toggleAddMember()">
+            <span class="d-flex align-items-center">
+                <i class="las la-plus-circle"></i>
+                <span>
+                    Add more people...
+                </span>
+            </span>
+        </button>
+    </ng-container>
+</div>

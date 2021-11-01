@@ -1,0 +1,22 @@
+<form [formGroup]="formData" (ngSubmit)="onCreateFolder()">
+    <div class="modal-body">
+        <div class="input-group">
+            <span class="input-group-prepend bg-white border-right-0">
+                <span class="input-group-text bg-white">
+                    <i class="las la-folder"></i>
+                </span>
+            </span>
+            <input type="text" class="form-control border-left-0" placeholder="Folder Name" name="name"
+                formControlName="name" autocomplete="off">
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-light" (click)="close()">
+            Cancel
+        </button>
+        <button class="btn btn-success" [disabled]="formData.invalid">
+            Create
+        </button>
+    </div>
+</form>

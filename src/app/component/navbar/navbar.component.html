@@ -42,7 +42,12 @@
 
     <!-- Logged in -->
     <div class="ml-auto" *ngIf="isLoggedIn">
-        <ul class="nav mt-2 mt-lg-0">
+        <ul class="nav mt-2 mt-lg-0 menu-nav">
+            <li class="nav-item active mr-lg-2">
+                <a routerLink="/dashboard/home" class="nav-link">
+                    <i class="las la-tachometer-alt nav-icon"></i>
+                </a>
+            </li>
             <li class="nav-item active mr-lg-2">
                 <app-search></app-search>
             </li>

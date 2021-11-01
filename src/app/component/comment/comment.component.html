@@ -1,0 +1,64 @@
+<div class="d-flex w-100">
+    <span class="mr-2">
+        <img class="avatar" [src]="baseUrl + data.user.image">
+    </span>
+    <div class="card document-card w-100">
+        <div class="card-header bg-white d-flex justify-content-between bg-light pb-0 mb-1">
+            <span>
+                <h6 class="text-capitalize mb-0">
+                    {{data.user.firstname}} {{data.user.lastname}}
+                </h6>
+                <p class="mt-1 mb-0">
+                    <i class="las la-clock mr-1"></i>
+                    {{data.createdAt | amDateFormat:'LL'}}
+                </p>
+            </span>
+            <span class="dropdown">
+                <button class="btn p-1" placement="bottom-right" [ngbPopover]="popContent"
+                    popoverClass="bg-light static-popover-width">
+                    <i class="las la-ellipsis-h"></i>
+                </button>
+            </span>
+        </div>
+        <div class="card-body mt-0 pt-0">
+            <span *ngIf="!data.isEditMode">
+                {{data.content}}
+            </span>
+            <div *ngIf="data.isEditMode">
+                <form [formGroup]="formData" (ngSubmit)="onUpdate()">
+                    <textarea name="content" rows="1" class="form-control" placeholder="Comment"
+                        formControlName="content"></textarea>
+                    <div class="mt-2 d-flex justify-content-end">
+                        <button class="btn btn-light mr-1" type="button" (click)="onEdit(true)">
+                            Cancel
+                        </button>
+                        <button class="btn btn-danger" type="submit" [disabled]="formData.invalid">
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #popContent>
+    <ul class="nav menu-nav w-100 flex-column">
+        <li class="nav-item">
+            <a class="nav-link" (click)="onEdit()">
+                <span class="mr-2">
+                    <i class="las la-pen"></i>
+                </span>
+                Edit
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="onDelete()">
+                <span class="mr-2">
+                    <i class="las la-trash-alt"></i>
+                </span>
+                Delete
+            </a>
+        </li>
+    </ul>
+</ng-template>

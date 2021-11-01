@@ -1,0 +1,101 @@
+<div class="bg-white py-3 px-4 d-flex justify-content-between align-items-center flex-wrap">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-white mb-0 static-breadcrumb">
+            <li class="breadcrumb-item">
+                <a (click)="onGotoFolder(null)">Cloudify</a>
+            </li>
+            <ng-container *ngFor="let folder of openFolders">
+                <li class="breadcrumb-item">
+                    <a class="text-capitalize" (click)="onGotoFolder(folder)">{{folder.name}}</a>
+                </li>
+            </ng-container>
+        </ol>
+    </nav>
+
+    <ng-container>
+        <ul class="nav" *ngIf="!selectedDocuments || selectedDocuments.length == 0">
+            <li class="nav-item mr-2">
+                <a class="btn btn-danger" (click)="onNewFolder()">
+                    <i class="las la-plus-circle"></i>
+                    New Folder
+                </a>
+            </li>
+            <li class="nav-item">
+                <input type="file" name="upload" id="file-upload" class="d-none" (change)="onFileChange($event)"
+                    multiple="true" />
+                <label for="file-upload" class="btn btn-light mb-0" *ngIf="isHome ||(!isHome && currentFolder)">
+                    <i class="las la-upload"></i>
+                    Upload
+                </label>
+            </li>
+        </ul>
+    </ng-container>
+
+    <ul class="nav d-none d-lg-block" *ngIf="selectedDocuments && selectedDocuments.length > 0">
+        <li class="nav-item mr-2">
+            <a href="" class="btn btn-light">
+                <i class="las la-download"></i>
+                Download
+            </a>
+        </li>
+
+        <li class="nav-item mr-2">
+            <a href="" class="btn btn-light">
+                <i class="las la-arrows-alt"></i>
+                Move
+            </a>
+        </li>
+
+        <li class="nav-item mr-2">
+            <a href="" class="btn btn-light">
+                <i class="las la-copy"></i>
+                Copy
+            </a>
+        </li>
+
+        <li class="nav-item mr-2">
+            <a href="" class="btn btn-light">
+                <i class="las la-pen"></i>
+                Rename
+            </a>
+        </li>
+    </ul>
+
+    <div class="dropdown d-lg-none" *ngIf="selectedDocuments && selectedDocuments.length > 0">
+        <button class="btn btn-light" data-toggle="dropdown">
+            <i class="las la-ellipsis-v"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item">
+                <i class="las la-download"></i>
+                Download
+            </a>
+            <a class="dropdown-item">
+                <i class="las la-share-alt"></i>
+                Share
+            </a>
+            <a class="dropdown-item">
+                <i class="las la-arrows-alt"></i>
+                Move
+            </a>
+            <a class="dropdown-item">
+                <i class="las la-copy"></i>
+                Copy
+            </a>
+            <a class="dropdown-item">
+                <i class="las la-pen"></i>
+                Rename
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="static-progress shadow" *ngIf="progress > 0">
+    <h6 class="text-muted mb-2">Upload Progress</h6>
+    <div class="pt-2" *ngFor="let progress of progressInfos">
+        <div class="progress" style="height: 5px;">
+            <div class="progress-bar" role="progressbar" [ngStyle]="{height: '5px', width: progress + '%'}"
+                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+    </div>
+</div>
