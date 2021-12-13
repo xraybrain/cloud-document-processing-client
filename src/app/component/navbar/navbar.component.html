@@ -5,14 +5,14 @@
     </button>
 
     <a class="navbar-brand" routerLink="/">
-        Cloudify
+        CDMS
     </a>
 
     <!-- Not Logged in -->
     <div class="collapse navbar-collapse" id="navbarToggler" *ngIf="!isLoggedIn">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link" routerLink="/#features">
+                <a class="nav-link" href="/#features">
                     Features
                 </a>
             </li>
@@ -44,12 +44,10 @@
     <div class="ml-auto" *ngIf="isLoggedIn">
         <ul class="nav mt-2 mt-lg-0 menu-nav">
             <li class="nav-item active mr-lg-2">
-                <a routerLink="/dashboard/home" class="nav-link">
+                <a routerLink="/dashboard/home" class="nav-link text-center">
                     <i class="las la-tachometer-alt nav-icon"></i>
+                    <p class="small mb-0">Dashboard</p>
                 </a>
-            </li>
-            <li class="nav-item active mr-lg-2">
-                <app-search></app-search>
             </li>
             <li class="nav-item active mr-lg-2">
                 <app-avatar></app-avatar>

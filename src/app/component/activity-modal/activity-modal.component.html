@@ -15,13 +15,22 @@
         <ng-container *ngFor="let activity of activities">
             <li>
                 <div class="card shadow document-card mb-2">
-                    <div class="card-body p-2">
-                        <p>{{activity.user.firstname}} {{activity.user.lastname}}</p>
+                    <div class="card-header d-flex bg-white mb-0 pb-0">
+                        <span class="mr-2">
+                            <img [src]="baseUrl + activity.user.image" alt="profile photo" class="avatar-sm">
+                        </span>
+                        <span class="d-flex flex-wrap align-items-center">
+                            <h6 class="text-capitalize mb-0 mr-2">
+                                {{activity.user.firstname}} {{activity.user.lastname}}
+                            </h6>
+                            <small class="mt-1 mt-sm-0">
+                                <i class="las la-clock mr-1"></i>
+                                {{activity.createdAt | amDateFormat:'LL'}}
+                            </small>
+                        </span>
+                    </div>
+                    <div class="card-body mt-0 pt-0">
                         <p class="mb-0">{{activity.content}}</p>
-                        <p class="mt-1 mb-0">
-                            <i class="las la-clock mr-1"></i>
-                            {{activity.createdAt | amDateFormat:'LL'}}
-                        </p>
                     </div>
                 </div>
             </li>

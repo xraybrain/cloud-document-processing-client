@@ -1,16 +1,17 @@
-<div class="wrapper">
-    <app-sidebar class="static-sidebar sticky-top" [activeLink]="currentView" (selected)="onNavSelected($event)">
+<div class="wrapper mt-4 mt-sm-3">
+    <app-sidebar class="static-sidebar sticky-top mt-1" [activeLink]="currentView" (selected)="onNavSelected($event)">
     </app-sidebar>
     <div class="overlay"></div>
     <div class="main-content">
         <app-main-header [currentFolder]="currentFolder" (folderCreated)="onFolderCreated($event)"
             [openFolders]="openFolders" (gotoFolder)="onGotoFolder($event)" (uploaded)="onUpload($event)"
-            [isHome]="isHome">
+            (search)="onSearch($event)" [isHome]="isHome">
         </app-main-header>
         <app-documentlist [documents]="documents" (openFolder)="onOpenFolder($event)" (copyDocument)="onCopy($event)"
             (moveDocument)="onMove($event)" (starDocument)="onStar($event)" (renameDocument)="onRename($event)"
             (deleteDocument)="onDelete($event)" (shareDocument)="onShare($event)" (comments)="onComments($event)"
-            (activities)="onActivities($event)" (members)="onMembers($event)" (link)="onGetLink($event)">
+            (activities)="onActivities($event)" (members)="onMembers($event)" (link)="onGetLink($event)"
+            [isShared]="isShare">
         </app-documentlist>
 
         <div class="py-3">

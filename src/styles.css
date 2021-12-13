@@ -75,7 +75,7 @@
 }
 
 .nav-icon {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   vertical-align: middle;
 }
 
@@ -146,14 +146,17 @@
 .static-sidebar-toggler {
   font-size: 1.5rem;
   position: absolute;
-  right: -1.5rem;
-  background-color: #fff;
-  border-radius: 20px;
+  right: -2.4rem;
+  background-color: #dc3545;
+  color: #fff;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
   padding: 0.3rem 0.5rem;
   cursor: pointer;
   opacity: 0.65;
   transition: all 0.6s ease-in-out;
   display: none;
+  top: 1.5rem;
 }
 
 .static-sidebar-toggler:hover,
@@ -470,5 +473,10 @@ ngb-popover-window.bs-popover-bottom-right > .arrow {
 
   .static-progress {
     width: 100%;
+  }
+
+  .static-comment-section > li {
+    padding-left: 0.5rem;
+    margin-left: 0;
   }
 }

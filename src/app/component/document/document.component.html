@@ -49,22 +49,17 @@
                 <i class="las la-comment"></i>&nbsp;Comment
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!isShared">
             <a class="nav-link" (click)="onShare()" *ngIf="data.document.isFolder">
                 <i class="las la-share"></i>&nbsp;Share
             </a>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link" (click)="onMembers()" *ngIf="data.document.isFolder">
-                <i class="las la-folder-open"></i>&nbsp;Members
-            </a>
-        </li> -->
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!isShared">
             <a (click)="onCopy()" class="nav-link">
                 <i class="las la-copy"></i>&nbsp;Copy
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!isShared">
             <a (click)="onMove()" class="nav-link">
                 <i class="las la-arrows-alt"></i>&nbsp;Move
             </a>
@@ -79,7 +74,7 @@
                 <i class="las la-download"></i>&nbsp;Download
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!isShared">
             <a (click)="onStar()" class="nav-link">
                 <ng-container *ngIf="!data.isStarred">
                     <i class="las la-star"></i>&nbsp;Star
@@ -90,7 +85,7 @@
                 </ng-container>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!isShared">
             <a (click)="onRename()" class="nav-link">
                 <i class="las la-pen"></i>&nbsp;Rename
             </a>
@@ -100,7 +95,7 @@
                 <i class="las la-list"></i>&nbsp;Activities
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!isShared">
             <a (click)="onDelete()" class="nav-link">
                 <i class="las la-trash-alt"></i>&nbsp;Delete
             </a>

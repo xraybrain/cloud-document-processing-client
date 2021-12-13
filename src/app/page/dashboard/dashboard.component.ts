@@ -38,6 +38,7 @@ export class DashboardComponent implements OnInit {
   isShare: boolean;
   isStar: boolean;
   currentView: DashboardView;
+  searchText: string;
 
   constructor(
     private documentService: DocumentService,
@@ -53,6 +54,7 @@ export class DashboardComponent implements OnInit {
   }
 
   setView(mode: DashboardView) {
+    this.searchText = "";
     this.currentView = mode;
     this.isHome = mode === DashboardView.home;
     this.isShare = mode === DashboardView.share;
@@ -74,6 +76,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onGotoFolder(doc?: DocumentVersionResponse) {
+    this.searchText = "";
     if (doc !== null) {
       if (this.currentFolder === doc.document.id) {
         return;
@@ -92,6 +95,15 @@ export class DashboardComponent implements OnInit {
     this.loadDocuments();
   }
 
+  onSearch(search: string) {
+    this.searchText = search;
+    if (this.currentView === DashboardView.share) {
+      this.loadSharedDocuments(true);
+    } else {
+      this.loadDocuments(true);
+    }
+  }
+
   loadDocuments(refresh = true) {
     if (refresh) {
       this.documents = [];
@@ -104,6 +116,8 @@ export class DashboardComponent implements OnInit {
     request.folderId = this.currentFolder;
     request.star = this.star;
     request.isFolder = false;
+    request.search = this.searchText;
+
     this.documentService.getDocuments(request).subscribe((feedback) => {
       this.toaster.clear();
       if (feedback.success) {
@@ -150,7 +164,7 @@ export class DashboardComponent implements OnInit {
       backdrop: "static",
     });
 
-    modalInstance.componentInstance.currentFolder = this.currentFolder;
+    // modalInstance.componentInstance.currentFolder = this.currentFolder;
     modalInstance.componentInstance.selectedItems = [doc];
     modalInstance.result.then((d: DocumentVersionResponse) => {
       if (d !== null) {
@@ -165,7 +179,7 @@ export class DashboardComponent implements OnInit {
       backdrop: "static",
     });
 
-    modalInstance.componentInstance.currentFolder = this.currentFolder;
+    // modalInstance.componentInstance.currentFolder = this.currentFolder;
     modalInstance.componentInstance.selectedItems = [doc];
     modalInstance.result.then((d: DocumentVersionResponse) => {
       if (d !== null) {

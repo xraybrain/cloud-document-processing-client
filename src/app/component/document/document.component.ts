@@ -15,6 +15,9 @@ export class DocumentComponent implements OnInit {
   @Input()
   data: DocumentVersionResponse;
 
+  @Input()
+  isShared: boolean;
+
   @Output()
   selectionChange: EventEmitter<SelectedDocument> = new EventEmitter();
 

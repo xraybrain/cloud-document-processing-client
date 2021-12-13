@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrService } from "ngx-toastr";
 import { Activity, ActivityViewRequest } from "src/app/models/activity.model";
+import AppGlobal from "src/app/models/appGlobal.model";
 import { DocumentVersionResponse } from "src/app/models/document.model";
 import { ActivityService } from "src/app/services/activity.service";
 
@@ -17,6 +18,8 @@ export class ActivityModalComponent implements OnInit {
   hasMore: boolean;
   currentPage = 1;
   activities: Activity[] = [];
+
+  baseUrl = AppGlobal.getBaseUrl();
 
   constructor(
     private toaster: ToastrService,

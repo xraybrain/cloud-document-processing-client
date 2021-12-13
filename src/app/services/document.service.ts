@@ -20,7 +20,8 @@ export class DocumentService {
 
   getDocuments(request: DocumentViewRequest) {
     return this.coreService.getData<Feedback<DocumentVersionResponse>>(
-      `/documents?page=${request.page}&folder=${request.folderId}&isfolder=${request.isFolder}&star=${request.star}`
+      // tslint:disable-next-line: max-line-length
+      `/documents?page=${request.page}&folder=${request.folderId}&isfolder=${request.isFolder}&star=${request.star}&search=${request.search}`
     );
   }
 
@@ -72,9 +73,10 @@ export class DocumentService {
     );
   }
 
-  uploadDocument(files: File) {
+  uploadDocument(files: File, folder: number) {
     const formData = new FormData();
     formData.append("upload", files);
+    formData.append("folder", `${folder}`);
 
     return this.coreService.uploadData<Feedback<boolean>>(
       formData,

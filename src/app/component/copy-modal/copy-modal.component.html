@@ -42,14 +42,35 @@
                 </div>
                 <div class="col-8 col-lg-9">
                     <div class="card">
-                        <div class="card-body p-1">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb mb-0 bg-white p-2">
-                                    <li class="breadcrumb-item" *ngFor="let target of targetList">
-                                        <a>{{target.name}}</a>
-                                    </li>
-                                </ol>
-                            </nav>
+                        <div class="card-body p-1 static-word-break">
+                            <ng-container *ngIf="targetList.length == 1">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0 bg-white p-2">
+                                        <li class="breadcrumb-item" *ngFor="let target of targetList">
+                                            <a>{{target.name}}</a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </ng-container>
+
+                            <ng-container *ngIf="targetList.length > 1">
+                                <button type="button" class="static-more-btn" placement="bottom-left"
+                                    [ngbPopover]="popContent" popoverClass="bg-light static-popover-width">
+                                    <i class="las la-ellipsis-h"></i>
+                                </button>
+                                <!-- Template -->
+                                <ng-template #popContent>
+                                    <ul class="nav menu-nav w-100 flex-column">
+                                        <li class="nav-item" *ngFor="let target of targetList">
+                                            <a class="nav-link" (click)="onChangeTarget(target.doc)">
+                                                <i class="las la-folder"></i>
+                                                {{target.name}}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </ng-template>
+                                <!-- Template -->
+                            </ng-container>
                         </div>
                     </div>
                 </div>
@@ -62,18 +83,13 @@
 
         <div>
             <app-folderlist [currentFolder]="currentFolder" (selectFolder)="onChangeTarget($event)"
-                [selectedItems]="selectedItems"></app-folderlist>
+                [selectedItems]="selectedItems" [refreshSubject]="refreshSubject.asObservable()"
+                [closeFolder]="closeFolder.asObservable()"></app-folderlist>
         </div>
     </div>
 </div>
 
 <div class="modal-footer justify-content-end">
-    <!-- <span>
-        <button class="btn btn-light">
-            New Folder
-        </button>
-    </span> -->
-
     <span>
         <button class="btn btn-light mr-1" (click)="close()">
             Cancel

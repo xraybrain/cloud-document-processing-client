@@ -19,6 +19,7 @@ export class DocumentVersionResponse {
   public link: string;
   public members: User[] = [];
   public isOwner: boolean;
+  public folderTree: number[] = [];
   constructor(
     public documentId: number,
     public userId: number,
@@ -40,7 +41,11 @@ export class NewFolderRequest {
 }
 
 export class TargetDocument {
-  constructor(public name: string, public id?: number) {}
+  constructor(
+    public name: string,
+    public id?: number,
+    public doc?: DocumentVersionResponse
+  ) {}
 }
 
 export class SelectedFolder {
@@ -74,5 +79,6 @@ export class DocumentViewRequest {
   isFolder: boolean;
   star: boolean;
   folderId: number;
+  search: string;
   constructor() {}
 }

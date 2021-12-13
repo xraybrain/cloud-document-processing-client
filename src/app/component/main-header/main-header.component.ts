@@ -1,8 +1,8 @@
 import { HttpEventType, HttpResponse } from "@angular/common/http";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrService } from "ngx-toastr";
-import { DashboardView } from "src/app/models/dashboard.model";
 import { DocumentVersionResponse } from "src/app/models/document.model";
 import { DocumentService } from "src/app/services/document.service";
 import { ProgressService } from "src/app/services/progress.service";
@@ -35,9 +35,13 @@ export class MainHeaderComponent implements OnInit {
   @Output()
   public uploaded: EventEmitter<boolean> = new EventEmitter();
 
+  @Output()
+  public search: EventEmitter<string> = new EventEmitter();
+
   selectedFiles: File[] = [];
   progressInfos: any[] = [];
   progress = 0;
+  formGroup: FormGroup;
 
   constructor(
     private modal: NgbModal,
@@ -52,6 +56,10 @@ export class MainHeaderComponent implements OnInit {
       if (percent === 100) {
         this.progress = 0;
       }
+    });
+
+    this.formGroup = new FormGroup({
+      search: new FormControl("", Validators.required),
     });
   }
 
@@ -89,7 +97,7 @@ export class MainHeaderComponent implements OnInit {
   }
 
   uploadFile(i: number, file: File) {
-    this.documentService.uploadDocument(file).subscribe(
+    this.documentService.uploadDocument(file, this.currentFolder).subscribe(
       (response) => {
         if (response.success) {
           this.toaster.success("Uploaded ");
@@ -106,5 +114,9 @@ export class MainHeaderComponent implements OnInit {
         });
       }
     );
+  }
+
+  onSearch() {
+    this.search.emit(this.formGroup.value.search);
   }
 }

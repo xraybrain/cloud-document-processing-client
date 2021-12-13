@@ -11,6 +11,9 @@ export class DocumentlistComponent implements OnInit {
   @Input()
   documents = [];
 
+  @Input()
+  isShared: boolean;
+
   @Output()
   openFolder: EventEmitter<DocumentVersionResponse> = new EventEmitter();
 

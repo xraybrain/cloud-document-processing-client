@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrService } from "ngx-toastr";
+import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
 import { DocIconMap } from "src/app/models/docIconMap.model";
 import {
   DocumentVersionResponse,
@@ -15,7 +16,6 @@ import { DocumentService } from "src/app/services/document.service";
   styleUrls: ["./move-modal.component.css"],
 })
 export class MoveModalComponent implements OnInit {
-  @Input()
   currentFolder: number;
 
   @Input()
@@ -32,6 +32,13 @@ export class MoveModalComponent implements OnInit {
 
   processing = false;
 
+  refreshSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
+
+  closeFolder: BehaviorSubject<DocumentVersionResponse> =
+    new BehaviorSubject<DocumentVersionResponse>(null);
+
   constructor(
     private toaster: ToastrService,
     private modalInstance: NgbActiveModal,
@@ -44,22 +51,53 @@ export class MoveModalComponent implements OnInit {
   }
 
   resetTargetList() {
-    this.targetList = [new TargetDocument("Cloudify", null)];
+    this.targetList = [new TargetDocument("CDMS", null)];
   }
 
   onChangeTarget(doc: DocumentVersionResponse) {
-    if (doc.folderId == null) {
-      this.resetTargetList();
-    }
-    const exists = this.targetList.find((d) => d.id === doc.documentId);
-
-    if (!exists) {
-      this.targetList.push(new TargetDocument(doc.name, doc.documentId));
-    } else {
-      const index = this.targetList.findIndex((d) => d.id === doc.documentId);
-      if (index !== -1) {
-        this.targetList.splice(index + 1);
+    if (doc) {
+      if (doc.folderId == null) {
+        this.resetTargetList();
       }
+      const exists = this.targetList.find(
+        (d) =>
+          d.id === doc.documentId || (d.doc && d.doc.folderId === doc.folderId)
+      );
+
+      // targetList already has a doc with same parent folder
+      const sameParent = this.targetList.find(
+        (d) => d.doc && d.doc.folderId === doc.folderId
+      );
+
+      if (!exists) {
+        this.targetList.push(new TargetDocument(doc.name, doc.documentId, doc));
+      } else {
+        let activeDoc: DocumentVersionResponse = doc;
+        const index = this.targetList.findIndex(
+          (d) =>
+            d.id === doc.documentId ||
+            (d.doc && d.doc.folderId === doc.folderId)
+        );
+
+        if (sameParent && index !== -1) {
+          // remove and get the removed doc
+          activeDoc = this.targetList.splice(index)[0].doc;
+          // insert new doc
+          this.targetList.push(
+            new TargetDocument(doc.name, doc.documentId, doc)
+          );
+        } else if (index !== -1) {
+          // not same parents but already exists remove
+          this.targetList.splice(index + 1);
+        } else {
+          // do nothing
+        }
+        // broadcast event to close this activeDoc
+        this.closeFolder.next(activeDoc);
+      }
+    } else {
+      this.resetTargetList();
+      this.refreshSubject.next(true);
     }
 
     this.target = doc;

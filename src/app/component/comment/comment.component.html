@@ -4,13 +4,15 @@
     </span>
     <div class="card document-card w-100">
         <div class="card-header bg-white d-flex justify-content-between bg-light pb-0 mb-1">
-            <span>
-                <h6 class="text-capitalize mb-0">
+            <span class="d-flex align-items-center flex-wrap">
+                <h6 class="text-capitalize mb-0 mr-1">
                     {{data.user.firstname}} {{data.user.lastname}}
                 </h6>
-                <p class="mt-1 mb-0">
-                    <i class="las la-clock mr-1"></i>
-                    {{data.createdAt | amDateFormat:'LL'}}
+                <p class="mt-1 mt-sm-0 mb-0">
+                    <small>
+                        <i class="las la-clock mr-1"></i>
+                        {{data.createdAt | amDateFormat:'LL'}}
+                    </small>
                 </p>
             </span>
             <span class="dropdown">
